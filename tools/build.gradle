@@ -18,16 +18,16 @@ plugins {
 }
 
 group 'com.klinec'
-version '0.0.4'
+version '0.0.5'
 sourceCompatibility = 1.8
 
 allprojects {
     if (!this.ext.has('jcardsimVersion'))
-        this.ext['jcardsimVersion'] = '3.0.5.11'
+        this.ext['jcardsimVersion'] = '3.0.6.0'
     if (!this.ext.has('apdu4jVersion'))
-        this.ext['apdu4jVersion'] = '2020b1'
+        this.ext['apdu4jVersion'] = '24.09.26.2'
     if (!this.ext.has('apdu4jPcscVersion'))
-        this.ext['apdu4jPcscVersion'] = '20.08.12'
+        this.ext['apdu4jPcscVersion'] = '24.09.26.2'
 }
 
 
@@ -74,11 +74,11 @@ uploadArchives {
             beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
 
             repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
-                authentication(userName: ossrhUsername, password: ossrhPassword)
+                authentication(userName: findProperty('ossrhUsername'), password: findProperty('ossrhPassword'))
             }
 
             snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots/") {
-                authentication(userName: ossrhUsername, password: ossrhPassword)
+                authentication(userName: findProperty('ossrhUsername'), password: findProperty('ossrhPassword'))
             }
 
             pom.project {
